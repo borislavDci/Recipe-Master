@@ -1,9 +1,31 @@
-"use client";
 import Link from "next/link";
 import { MdDashboardCustomize } from "react-icons/md";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 
-const ProfileDropdown = ({ isDropdownOpen }: { isDropdownOpen: boolean }) => {
+interface ProfileDropdownProps {
+  isDropdownOpen: boolean;
+}
+
+interface ProfileDropdownItem {
+  title: string;
+  href: string;
+  icon: JSX.Element;
+}
+
+const ProfileDropdown = ({ isDropdownOpen }: ProfileDropdownProps) => {
+  const profileDropdownItems: ProfileDropdownItem[] = [
+    {
+      title: "Dashboard",
+      href: "/dashboard",
+      icon: <MdDashboardCustomize />,
+    },
+    {
+      title: "Logout",
+      href: "/logout",
+      icon: <RiLogoutBoxRLine />,
+    },
+  ];
+
   return (
     <div
       className={`absolute left-6 top-full z-50 w-48 -translate-x-full transform ${
@@ -15,30 +37,22 @@ const ProfileDropdown = ({ isDropdownOpen }: { isDropdownOpen: boolean }) => {
         <span className="block text-sm text-gray-900 dark:text-white">
           John Doe
         </span>
-        <span className="block truncate  text-sm text-gray-500 dark:text-gray-400">
+        <span className="block truncate text-sm text-gray-500 dark:text-gray-400">
           john@gmail.com
         </span>
       </div>
       <ul className="py-2" aria-labelledby="user-menu-button">
-        <li>
-          <Link
-            href="#"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
-          >
-            <MdDashboardCustomize className="profileIcons" />
-            Dashboard
-          </Link>
-        </li>
-
-        <li>
-          <Link
-            href="#"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
-          >
-            <RiLogoutBoxRLine className="profileIcons" />
-            Logout
-          </Link>
-        </li>
+        {profileDropdownItems.map((item, index) => (
+          <li key={index}>
+            <Link
+              href={item.href}
+              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+            >
+              <span className="profileIcons">{item.icon}</span>
+              <span>{item.title}</span>
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

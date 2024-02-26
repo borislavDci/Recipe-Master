@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { HiMenu, HiX } from "react-icons/hi";
@@ -12,18 +12,20 @@ interface NavItem {
 }
 
 const Navbar = () => {
+  // State variables for dropdown and menu visibility
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+  // Toggle function for opening/closing the dropdown
+  const toggleDropdown = useCallback(() => {
+    setIsDropdownOpen((prevState) => !prevState);
     setIsMenuOpen(false); // Close the menu when opening dropdown
-  };
+  }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  // Toggle function for opening/closing the menu
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen((prevState) => !prevState);
     setIsDropdownOpen(false); // Close the dropdown when opening menu
-  };
+  }, []);
 
   // Defines an array of navigation items
   const navItems: NavItem[] = [
@@ -34,6 +36,7 @@ const Navbar = () => {
   return (
     <nav className="relative border-gray-200 bg-white dark:bg-gray-900">
       <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
+        {/* Brand/logo section */}
         <Link
           href="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -42,7 +45,10 @@ const Navbar = () => {
             Recipe Master
           </span>
         </Link>
+
+        {/* User profile and menu section */}
         <div className="relative flex items-center space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
+          {/* User profile button */}
           <button
             type="button"
             className="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300 md:me-0 dark:focus:ring-gray-600"
@@ -51,12 +57,15 @@ const Navbar = () => {
             onClick={toggleDropdown}
           >
             <span className="sr-only">Open user menu</span>
+
+            {/* User profile image */}
             <Image
               className="h-8 w-8 rounded-full"
               src={profile}
               alt="user photo"
             />
           </button>
+
           {/* Dropdown menu */}
           <ProfileDropdown isDropdownOpen={isDropdownOpen} />
           <button
@@ -68,6 +77,8 @@ const Navbar = () => {
             onClick={toggleMenu}
           >
             <span className="sr-only">Toggle menu</span>
+
+            {/* Menu toggle icon */}
             {isMenuOpen ? (
               <HiX className="h-6 w-6" />
             ) : (
