@@ -1,6 +1,7 @@
 "use client";
 import { useState, useCallback } from "react";
 import Link from "next/link";
+
 import Image from "next/image";
 import profile from "@/public/navbar/profile.png";
 import ProfileDropdown from "@/common/profileDropdown/ProfileDropdown";
@@ -11,6 +12,7 @@ import NavItems from "./NavItems";
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const toggleDropdown = useCallback(() => {
@@ -35,6 +37,7 @@ const Navbar = () => {
   return (
     <nav className="relative bg-gray-800 ">
       <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
+        {/* Renders the Hamburger menu */}
         <HamburgerMenu isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
         <Link
           href="/"
@@ -60,10 +63,13 @@ const Navbar = () => {
               alt="user photo"
             />
           </button>
+
+          {/* Renders the Profile dropdown componenet */}
           <ProfileDropdown isDropdownOpen={isDropdownOpen} />
         </div>
 
         <ul className="hidden md:flex md:items-center md:space-x-8">
+          {/* Renders NavItems components to dispay the nav items */}
           <NavItems items={navItems} />
           <li>
             <SearchForm />
@@ -73,8 +79,10 @@ const Navbar = () => {
 
       <div className={`w-full ${isMenuOpen ? "block" : "hidden"}`}>
         <ul className="flex flex-col items-center rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse dark:border-gray-700 dark:bg-gray-800 md:dark:bg-gray-900">
+          {/* Renders NavItems components to dispay the nav items */}
           <NavItems items={navItems} />
           <li>
+            {/* Renders the search form component */}
             <SearchForm />
           </li>
         </ul>
