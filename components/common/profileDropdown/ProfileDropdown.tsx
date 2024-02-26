@@ -28,7 +28,7 @@ const ProfileDropdown = ({ isDropdownOpen }: ProfileDropdownProps) => {
 
   return (
     <div
-      className={`absolute left-6 top-full z-50 w-48 -translate-x-full transform ${
+      className={`absolute left-8 top-full z-50 w-48 -translate-x-full transform ${
         isDropdownOpen ? "" : "hidden"
       } my-4 list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow dark:divide-gray-600 dark:bg-gray-700`}
       id="user-dropdown"
