@@ -21,7 +21,7 @@ const NavItems = ({ items }: NavItemsProps) => {
   }, [pathname]);
 
   const generateLinkClass = (isActive: boolean) => {
-    return `block px-3 py-2 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:dark:hover:bg-transparent ${
+    return `block px-3 py-2 hover:bg-info md:p-0 md:hover:bg-transparent md:dark:hover:bg-transparent ${
       isActive
         ? "font-bold text-primary border-b-2 border-primary"
         : "text-white"
