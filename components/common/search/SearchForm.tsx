@@ -23,7 +23,7 @@ const SearchForm = () => {
       </div>
       <button
         type="button"
-        className="ml-2 rounded-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="ml-2 rounded-lg border border-info bg-primary p-2.5 text-sm font-medium text-white hover:bg-info focus:outline-none focus:ring-4 focus:ring-blue-300 dark:hover:bg-info"
       >
         <FiSearch className="h-4 w-4" />
         <span className="sr-only">Search</span>

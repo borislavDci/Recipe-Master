@@ -36,8 +36,21 @@ const Navbar = () => {
     { title: "About", href: "/about" },
   ];
 
+  const renderNavItems = () => {
+    return navItems.map((item, index) => (
+      <li key={index} className="my-3 md:my-0">
+        <Link
+          href={item.href}
+          className="block rounded px-3 py-2 text-textColor hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+        >
+          {item.title}
+        </Link>
+      </li>
+    ));
+  };
+
   return (
-    <nav className="relative border-gray-200 bg-white dark:bg-gray-900">
+    <nav className="relative bg-gray-800 ">
       <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
         {/* Use the HamburgerMenu component */}
         <HamburgerMenu isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
@@ -53,14 +66,14 @@ const Navbar = () => {
         <div className="relative flex items-center space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
           <button
             type="button"
-            className="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300 md:me-0 dark:focus:ring-gray-600"
+            className="flex rounded-full bg-textColor     text-sm focus:ring-4 md:me-0 dark:focus:ring-info"
             id="user-menu-button"
             aria-expanded={isDropdownOpen ? "true" : "false"}
             onClick={toggleDropdown}
           >
             <span className="sr-only">Open user menu</span>
             <Image
-              className="h-8 w-8 rounded-full"
+              className="h-10 w-10 rounded-full"
               src={profile}
               alt="user photo"
             />
@@ -69,31 +82,23 @@ const Navbar = () => {
           <ProfileDropdown isDropdownOpen={isDropdownOpen} />
         </div>
 
-        <div
-          className={`w-full items-center justify-between md:order-1 md:flex md:w-auto ${
-            isMenuOpen ? "" : "hidden"
-          }`}
-          id="navbar-user"
-        >
-          <div className="flex w-full items-center justify-center">
-            <ul className="flex flex-col items-center rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse dark:border-gray-700 dark:bg-gray-800 md:dark:bg-gray-900">
-              {/* Renders Navbar Items */}
-              {navItems.map((item, index) => (
-                <li key={index} className="my-3 md:my-0">
-                  <Link
-                    href={item.href}
-                    className="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <SearchForm />
-              </li>
-            </ul>
-          </div>
-        </div>
+        {/* Navbar Items */}
+        <ul className="hidden md:flex md:items-center md:space-x-8">
+          {renderNavItems()}
+          <li>
+            <SearchForm />
+          </li>
+        </ul>
+      </div>
+
+      {/* Dropdown Menu for Small Screens */}
+      <div className={`w-full ${isMenuOpen ? "block" : "hidden"}`}>
+        <ul className="flex flex-col items-center rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse dark:border-gray-700 dark:bg-gray-800 md:dark:bg-gray-900">
+          {renderNavItems()}
+          <li>
+            <SearchForm />
+          </li>
+        </ul>
       </div>
     </nav>
   );
