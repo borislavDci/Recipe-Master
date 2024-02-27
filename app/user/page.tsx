@@ -11,7 +11,7 @@ function UserPage() {
   });
   return (
     <div>
-      {session?.user?.name} : {session?.expires}
+      {session?.user?.email} : {session?.expires}
     </div>
   );
 }
