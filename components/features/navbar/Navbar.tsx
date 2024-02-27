@@ -5,7 +5,7 @@ import { FaSignInAlt } from "react-icons/fa";
 import Image from "next/image";
 import profile from "@/public/navbar/profile.png";
 import ProfileDropdown from "@/common/profileDropdown/ProfileDropdown";
-import SearchForm from "@/common/search/SearchForm";
+import SearchForm from "@/components/common/searchForm/SearchForm";
 import HamburgerMenu from "@/common/hamburgerMenu/HamburgerMenu";
 import NavItems from "./NavItems";
 import LoginButton from "@/common/loginButton/LoginButton";
@@ -13,7 +13,6 @@ import LoginButton from "@/common/loginButton/LoginButton";
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isLoggedIn = false; // Change this to true/false based on your authentication logic
 
   const toggleDropdown = useCallback(() => {
@@ -26,19 +25,10 @@ const Navbar = () => {
     setIsDropdownOpen(false);
   }, []);
 
-  const toggleSearch = () => {
-    setIsSearchOpen((prevState) => !prevState);
-  };
-
   const handleLogin = useCallback(() => {
     // Handle the login here
     console.log("The login button has been clicked!");
   }, []);
-
-  const navItems = [
-    { title: "Home", href: "/" },
-    { title: "About", href: "/about" },
-  ];
 
   return (
     <nav className="relative bg-gray-800">
@@ -79,7 +69,7 @@ const Navbar = () => {
         </div>
 
         <ul className="hidden md:flex md:items-center md:space-x-8">
-          <NavItems items={navItems} />
+          <NavItems /> {/* Render the NavItems component */}
           <li>
             <SearchForm />
           </li>
@@ -88,7 +78,7 @@ const Navbar = () => {
 
       <div className={`w-full ${isMenuOpen ? "block" : "hidden"}`}>
         <ul className="flex flex-col items-center border-0 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse dark:bg-gray-700">
-          <NavItems items={navItems} />
+          <NavItems /> {/* Render the NavItems component */}
           <li>
             <SearchForm />
           </li>

@@ -8,17 +8,19 @@ interface NavItem {
   href: string;
 }
 
-interface NavItemsProps {
-  items: NavItem[];
-}
-
-const NavItems = ({ items }: NavItemsProps) => {
+const NavItems = () => {
   const pathname = usePathname();
   const [activePath, setActivePath] = useState("");
 
   useEffect(() => {
     setActivePath(pathname);
   }, [pathname]);
+
+  const navItems = [
+    // Define navItems array here
+    { title: "Home", href: "/" },
+    { title: "About", href: "/about" },
+  ];
 
   const generateLinkClass = (isActive: boolean) => {
     return `block px-3 py-2 hover:bg-info md:p-0 md:hover:bg-transparent md:dark:hover:bg-transparent ${
@@ -28,8 +30,8 @@ const NavItems = ({ items }: NavItemsProps) => {
     }`;
   };
 
-  const renderNavItems = (items: NavItem[]) => {
-    return items.map((item, index) => {
+  const renderNavItems = (navItems: NavItem[]) => {
+    return navItems.map((item, index) => {
       const isActive = activePath === item.href;
       const linkClass = generateLinkClass(isActive);
 
@@ -43,7 +45,7 @@ const NavItems = ({ items }: NavItemsProps) => {
     });
   };
 
-  return <>{renderNavItems(items)}</>;
+  return <>{renderNavItems(navItems)}</>;
 };
 
 export default NavItems;
