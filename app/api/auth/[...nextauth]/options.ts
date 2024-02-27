@@ -1,5 +1,8 @@
+import { User } from "@/lib/models/userSchema";
+import connectMongoDB from "@/utils/connectDb";
 import type { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import bcrypt from "bcrypt";
 
 export const options: NextAuthOptions = {
   providers: [
@@ -18,13 +21,24 @@ export const options: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        const user = { id: "1", name: "test", password: "test" };
-        if (
-          credentials?.username === user.name &&
-          credentials?.password === user.password
-        ) {
+        try {
+          await connectMongoDB();
+          const user = await User.findOne({
+            username: credentials?.username,
+          });
+          if (!user.username) {
+            return null;
+          }
+          const isValid = await bcrypt.compare(
+            credentials?.password as string,
+            user.password as string,
+          );
+          if (!isValid) {
+            return null;
+          }
           return user;
-        } else {
+        } catch (error) {
+          console.log(error);
           return null;
         }
       },
