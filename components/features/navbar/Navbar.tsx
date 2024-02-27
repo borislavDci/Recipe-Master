@@ -25,11 +25,6 @@ const Navbar = () => {
     setIsDropdownOpen(false);
   }, []);
 
-  const handleLogin = useCallback(() => {
-    // Handle the login here
-    console.log("The login button has been clicked!");
-  }, []);
-
   return (
     <nav className="relative bg-gray-800">
       <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
@@ -65,7 +60,7 @@ const Navbar = () => {
               <ProfileDropdown isDropdownOpen={isDropdownOpen} />
             </>
           ) : (
-            <LoginButton onClick={handleLogin} ButtonIcon={FaSignInAlt} />
+            <LoginButton ButtonIcon={FaSignInAlt} />
           )}
         </div>
 
