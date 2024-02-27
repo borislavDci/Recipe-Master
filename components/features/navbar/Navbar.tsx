@@ -14,7 +14,7 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const isLoggedIn = true; // Change this to true/false based on your authentication logic
+  const isLoggedIn = false; // Change this to true/false based on your authentication logic
 
   const toggleDropdown = useCallback(() => {
     setIsDropdownOpen((prevState) => !prevState);
@@ -70,6 +70,7 @@ const Navbar = () => {
                   alt="user photo"
                 />
               </button>
+              {/* Conditionally renders the profile dropdown and Login button */}
               <ProfileDropdown isDropdownOpen={isDropdownOpen} />
             </>
           ) : (

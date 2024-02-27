@@ -9,10 +9,10 @@ interface LoginButtonProps {
 const LoginButton = ({ onClick, ButtonIcon }: LoginButtonProps) => {
   return (
     <button
-      className="flex items-center justify-center rounded-md bg-primary px-4 py-2 text-white hover:bg-info focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="flex items-center justify-center rounded-md bg-primary px-3 py-2 text-white hover:bg-info focus:outline-none focus:ring-2 focus:ring-info focus:ring-offset-2"
       onClick={onClick}
     >
-      <ButtonIcon className="mr-2 h-6 w-6" />
+      <ButtonIcon className="mr-1 h-4 w-4" />
       Login
     </button>
   );
