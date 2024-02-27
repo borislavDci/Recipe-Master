@@ -33,6 +33,7 @@ const Navbar = () => {
   return (
     <nav className="relative bg-gray-800">
       <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
+        {/* Renders hamburger Menu */}
         <HamburgerMenu isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
         <Link
           href="/"
@@ -71,7 +72,7 @@ const Navbar = () => {
         <ul className="hidden md:flex md:items-center md:space-x-8">
           <NavItems /> {/* Render the NavItems component */}
           <li>
-            <SearchForm />
+            <SearchForm /> {/* Renders SearchForm component */}
           </li>
         </ul>
       </div>
@@ -80,7 +81,7 @@ const Navbar = () => {
         <ul className="flex flex-col items-center border-0 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse dark:bg-gray-700">
           <NavItems /> {/* Render the NavItems component */}
           <li>
-            <SearchForm />
+            <SearchForm /> {/* Renders SearchForm component */}
           </li>
         </ul>
       </div>
